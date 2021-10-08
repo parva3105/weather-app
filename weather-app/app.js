@@ -1,15 +1,28 @@
 const request = require('request')
-// const url = 'http://api.weatherstack.com/current?access_key=b72432b9d2aecff46200d54e1d1a8ef1&query=37.8267,-122.4233&unit=f' for american system i.e farenheit
-const url = 'http://api.weatherstack.com/current?access_key=b72432b9d2aecff46200d54e1d1a8ef1&query=Ahmedabad'
+const geocode = require('./utils/geocode')
+const forecast = require('./utils/forecast')
+const yargs = require('yargs')
+const { argv } = require('yargs')
 
-request({ url: url, json:true }, (error,response) => {
-    if(error){
-        console.log('Unable to connect to weather services!');
-    }else if (response.body.error){
-        console.log('Unable to find location');
-    }else{
-        console.log(response.body.current.weather_description[0] + '. It is currently '+ response.body.current.temperature + ' degrees outside . It feels like ' + response.body.current.feelslike);
-    }
-})
+// place = argv['_'][0] using yargs
+const address = process.argv[2]
 
-const geoCodeURL = 'https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20Angeles.json?access_token=pk.eyJ1IjoicGFydmEzMTA1IiwiYSI6ImNrdHVlMGY0eDA5eWMydm1waTIzZnZ3aTQifQ.BT75QxKkWx3pNMBMSOUk2w&limit=1'
+if(!address) {
+    console.log("Please provide an address");
+}else {
+    geocode(address , (error,  {latitude , longitude , location} = {} ) => {
+        if(error){
+            return console.log(error);
+        }
+        forecast(latitude, longitude, (error,forecastData) => {
+            if(error){
+                return console.log(error);
+            }
+            console.log(location);
+            console.log(forecastData);
+        })
+    })
+}
+
+ 
+yargs.parse()
