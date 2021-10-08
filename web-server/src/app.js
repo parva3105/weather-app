@@ -3,27 +3,39 @@ const path = require('path');
 
 
 const app = express()
+//Define paths for express config
 const publicDirectoryPath = path.join(__dirname,'../public')
-const helpPath  = path.join(__dirname, '../public/help.html')
+const viewsPath = path.join(__dirname, '../templates')
 
+//setting up handlebars emgine and views location\
+app.set('view engine','hbs')
+app.set('views' , viewsPath)
+
+//Setup static directory to serve
 app.use(express.static(publicDirectoryPath))
 
-// app.get('', (req , res) => {
-//     res.send('<h1>Weather App</h1>')
-// })
+app.get('' ,(req , res) => {
+    res.render('index', {
+        title : 'Weather',
+        name : 'Parva Shah'
+    })
+})
 
-// app.get('/help' , (req , res) => {
-//     res.send([{
-//         name: 'Parva'
-//     },{
-//         age : 20
-    
-//     }])
-// })
+app.get('/about' ,(req , res) => {
+    res.render('about',{
+        title : 'Weather App',
+        name : 'Parva Shah',
+    })
+})
 
-// app.get('/about' ,(req , res) => {
-//     res.send('<h1>About Page !</h1>')
-// })
+app.get('/help' ,(req , res) => {
+    res.render('help', {
+        title: 'Help PAGE',
+        desc: 'This is the help page',
+        subs: 'What can we do for you ?'
+
+    })
+})
 
 app.get('/weather' , (req , res) => {
     res.send({
