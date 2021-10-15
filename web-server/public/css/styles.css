@@ -1,3 +1,11 @@
-h1 {
-    color: rgb(51, 155, 187);
+body {
+    color:#333333;
+    max-width: 650px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0 auto ;
+    padding: 0 16px;
+}
+
+footer {
+    background: blue;
 }

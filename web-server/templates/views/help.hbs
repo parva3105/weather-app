@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>About Page</title>
+        <title>{{title}}</title>
         <link rel="stylesheet" href="css/styles.css">
     </head>
     <body>
-        <h1>{{title}}</h1>
-        <p>Created by {{name}}</p>
+        {{>header}}
+
+        <h1>{{desc}}</h1>
+        <p>{{subs}}</p>
+
+
+        {{>footer}}
     </body>
 </html>
