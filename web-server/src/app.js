@@ -35,8 +35,7 @@ app.get('/help' ,(req , res) => {
     res.render('help', {
         title: 'Help PAGE',
         name : "Parva Shah",
-        desc: 'This is the help page',
-        subs: 'What can we do for you ?'
+        helpText: 'What can we do for you ?'
 
     })
 })
@@ -49,7 +48,7 @@ app.get('/weather' , (req , res) => {
 })
 
 app.get('/help/*',(req , res) => {
-    res.render('error' ,{
+    res.render('404' ,{
         title  : "Eroor 404", 
         name : "Parva Shah",
         errorMessage : "Help article not found "
@@ -57,7 +56,7 @@ app.get('/help/*',(req , res) => {
 })
 
 app.get('*',(req , res) => {
-    res.render('error',{
+    res.render('404',{
         title : "Error 404",
         name : "Parva Shah",
         errorMessage : "Page not Found",
