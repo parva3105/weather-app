@@ -1,6 +1,6 @@
 body {
     background: url(bg.gif);
-    background-repeat: repeat-y;
+    background-repeat: no-repeat;
     color:#333333;
     max-width: 750px;
     font-family: Arial, Helvetica, sans-serif;
