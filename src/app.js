@@ -61,10 +61,13 @@ app.get('/weather' , (req , res) => {
                 return res.send({error});
             }
             console.log(location); //This returns deatiled address to console
-            console.log(forecastData); // Not necessary 
+            console.log(forecastData[0]); // Not necessary 
             res.send({
-                forecast : forecastData,
-                location : req.query.address
+                temp : forecastData[1],
+                feelsLike : forecastData[2],
+                forecast : forecastData[0],
+                location : req.query.address,
+                humidity : forecastData[3],
             })
         })
     })
