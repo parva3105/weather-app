@@ -2,7 +2,8 @@ const express = require('express');
 const path = require('path');
 const hbs = require('hbs');
 const geocode = require('./utils/geocode')
-const forecast = require('./utils/forecast')
+const forecast = require('./utils/forecast');
+const e = require('express');
 
 
 const app = express()
@@ -55,23 +56,24 @@ app.get('/weather' , (req , res) => {
     geocode(req.query.address , ( error ,  {latitude , longitude , location} = {} ) => {
         if(error){
             return res.send ({ error })
-        }
-        forecast(latitude, longitude, ( error, forecastData) => {
-            if(error){
-                 res.send({error});
-            }else {
-                res.send({
-                temp : forecastData[1],
-                feelsLike : forecastData[2],
-                forecast : forecastData[0],
-                location : req.query.address,
-                humidity : forecastData[3],
-                })
-            }
-            console.log(location); //This returns deatiled address to console
-            console.log(forecastData[0]); // Not necessary 
-            console.log(error);
-        })
+        }else{
+            forecast(latitude, longitude, ( error, forecastData) => {
+                if(error){
+                     res.send({error});
+                }else {
+                    res.send({
+                    temp : forecastData[1],
+                    feelsLike : forecastData[2],
+                    forecast : forecastData[0],
+                    location : req.query.address,
+                    humidity : forecastData[3],
+                    })
+                }
+                console.log(location); //This returns deatiled address to console
+                console.log(forecastData[0]); 
+                console.log(error);
+            })
+        } 
     })
 
     // console.log(req.query.address); This gives only the passed string
