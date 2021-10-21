@@ -67,6 +67,7 @@ app.get('/weather' , (req , res) => {
                     forecast : forecastData[0],
                     location : req.query.address,
                     humidity : forecastData[3],
+                    preciseLocation : location,
                     })
                 }
                 console.log(location); //This returns deatiled address to console

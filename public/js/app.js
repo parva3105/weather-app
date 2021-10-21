@@ -21,7 +21,7 @@ weatherForm.addEventListener('submit', (e) => {
         if(data.error) {
             messageOne.textContent = data.error
         }else {
-            messageOne.textContent = 'It is '+ data.forecast + ' in '+ data.location
+            messageOne.textContent = 'It is '+ data.forecast + ' in '+ data.preciseLocation
             messageTwo.textContent = 'Temperature is ' + data.temp
             messageThree.textContent = 'Feels Like ' + data.feelsLike
             messageFour.textContent = 'Humidity is ' + data.humidity
