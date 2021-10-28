@@ -1,4 +1,4 @@
-# weather-app
+# Weather-app
 A simple Weather app Using NOdeJs and API'S
 This here is the source code of the App - https://weatherapp-first.herokuapp.com/
 
